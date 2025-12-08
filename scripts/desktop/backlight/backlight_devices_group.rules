@@ -1,0 +1,1 @@
+ACTION=="add", SUBSYSTEM=="backlight", RUN+="/etc/udev/my_scripts/backlight_devices_group.sh '$devpath'"
