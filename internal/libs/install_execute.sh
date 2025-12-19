@@ -10,7 +10,7 @@ source "$current_dir/../../libs/log.sh"
 # Install pacman packages.
 install_execute_installation() {
 	local deps=$(cat "$INSTALL_DEPS_FILE")
-	local packages=$(cat "$INSTALL_PACKAGES_FILE")
+	local packages=$(cat "$INSTALL_PACKAGES_FILE" "$INSTALL_PACKAGE_GROUPS_FILE")
 
 	if [[ -n "$deps" ]]; then
 		sudo pacman -S --needed --asdeps $deps
@@ -33,7 +33,7 @@ install_execute_hooks() {
 # Install AUR packages.
 install_execute_aur_installation() {
 	local deps=$(cat "$INSTALL_AUR_DEPS_FILE")
-	local packages=$(cat "$INSTALL_AUR_PACKAGES_FILE")
+	local packages=$(cat "$INSTALL_AUR_PACKAGES_FILE" "$INSTALL_AUR_PACKAGE_GROUPS_FILE")
 
 	if [[ -n "$deps" ]]; then
 		yay -S --needed --asdeps $deps

@@ -8,6 +8,7 @@ fi
 __install_aur_lib_already_loaded=y
 
 export INSTALL_AUR_PACKAGES_FILE="${INSTALL_AUR_PACKAGES_FILE:-/dev/null}" # File with the packages to install (separated by spaces)
+export INSTALL_AUR_PACKAGE_GROUPS_FILE="${INSTALL_AUR_PACKAGE_GROUPS_FILE:-/dev/null}" # File with the packages groups to install (separated by spaces)
 export INSTALL_AUR_DEPS_FILE="${INSTALL_AUR_DEPS_FILE:-/dev/null}" # File with the dependencies to install (separated by spaces)
 declare -a INSTALL_AUR_POST_INSTALL_HOOKS=() # Hooks to run after installing all the packages
 
@@ -16,6 +17,7 @@ declare -a INSTALL_AUR_POST_INSTALL_HOOKS=() # Hooks to run after installing all
 # Override the files if they already exist.
 install_aur_create_files() {
 	export INSTALL_AUR_PACKAGES_FILE="$(mktemp)"
+	export INSTALL_AUR_PACKAGE_GROUPS_FILE="$(mktemp)"
 	export INSTALL_AUR_DEPS_FILE="$(mktemp)"
 }
 
@@ -25,6 +27,15 @@ install_aur_create_files() {
 install_aur_mark_packages() {
 	for package in "$@"; do
 		echo -n "$package " >> "$INSTALL_AUR_PACKAGES_FILE"
+	done
+}
+
+# Add AUR package groups to install.
+#
+# $@: List of AUR package groups to install.
+install_aur_mark_package_groups() {
+	for group in "$@"; do
+		echo -n "$group " >> "$INSTALL_AUR_PACKAGE_GROUPS_FILE"
 	done
 }
 
@@ -52,6 +63,10 @@ install_aur_add_post_install() {
 install_aur_close() {
 	if [[ "$INSTALL_AUR_PACKAGES_FILE" != '/dev/null' ]]; then
 		rm "$INSTALL_AUR_PACKAGES_FILE"
+	fi
+
+	if [[ "$INSTALL_AUR_PACKAGE_GROUPS_FILE" != '/dev/null' ]]; then
+		rm "$INSTALL_AUR_PACKAGE_GROUPS_FILE"
 	fi
 
 	if [[ "$INSTALL_AUR_DEPS_FILE" != '/dev/null' ]]; then
