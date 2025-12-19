@@ -1,6 +1,9 @@
 install: FORCE
 	./install.sh
 
+list-non-tracked: FORCE
+	./list-non-traked-packages.sh
+
 send-to-admin: FORCE
 	cp -rT . /home/admin/archlinux-scripts
 	sudo ./sync.sh "$$PWD" /home/admin/archlinux-scripts
