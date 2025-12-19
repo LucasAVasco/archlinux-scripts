@@ -9,8 +9,8 @@ source "$current_dir/../../libs/log.sh"
 
 # Install pacman packages.
 install_execute_installation() {
-	local deps=$(cat "$__install_deps_file")
-	local packages=$(cat "$__install_packages_file")
+	local deps=$(cat "$INSTALL_DEPS_FILE")
+	local packages=$(cat "$INSTALL_PACKAGES_FILE")
 
 	if [[ -n "$deps" ]]; then
 		sudo pacman -S --needed --asdeps $deps
@@ -24,7 +24,7 @@ install_execute_installation() {
 # Run post-install hooks.
 install_execute_hooks() {
 	local hook
-	for hook in "${__install_post_install_hooks[@]}"; do
+	for hook in "${INSTALL_POST_INSTALL_HOOKS[@]}"; do
 		echo "Running post-install hook: $hook"
 		"$hook"
 	done
@@ -32,8 +32,8 @@ install_execute_hooks() {
 
 # Install AUR packages.
 install_execute_aur_installation() {
-	local deps=$(cat "$__install_aur_deps_file")
-	local packages=$(cat "$__install_aur_packages_file")
+	local deps=$(cat "$INSTALL_AUR_DEPS_FILE")
+	local packages=$(cat "$INSTALL_AUR_PACKAGES_FILE")
 
 	if [[ -n "$deps" ]]; then
 		yay -S --needed --asdeps $deps
@@ -47,7 +47,7 @@ install_execute_aur_installation() {
 # Run AUR post-install hooks.
 install_execute_aur_hooks() {
 	local hook
-	for hook in "${__install_aur_post_install_hooks[@]}"; do
+	for hook in "${INSTALL_AUR_POST_INSTALL_HOOKS[@]}"; do
 		echo "Running post-install hook: $hook"
 		"$hook"
 	done

@@ -33,26 +33,17 @@ if [[ "$UID" -eq 0 ]]; then
 fi
 
 # Configures the libraries
-__install_packages_file=$(mktemp)
-__install_deps_file=$(mktemp)
-__install_aur_packages_file=$(mktemp)
-__install_aur_deps_file=$(mktemp)
-__log_file=$(mktemp)
-
-trap "rm '$__install_packages_file' '$__install_deps_file' '$__install_aur_packages_file' '$__install_aur_deps_file' '$__log_file'" EXIT
-
-echo "${SCRIPTS_TO_INSTALL[@]}"
+install_create_files
+install_aur_create_files
+log_create_file
+trap 'install_close' EXIT
+trap 'install_aur_close' EXIT
+trap 'log_close' EXIT
 
 # Updates the list of packages to install
 for script in "${SCRIPTS_TO_INSTALL[@]}"; do
 	echo "Getting the list of packages to install: $script"
-	./internal/get-pacman-packages.sh \
-		"$__install_packages_file" \
-		"$__install_deps_file" \
-		"$__install_aur_packages_file" \
-		"$__install_aur_deps_file" \
-		"$__log_file" \
-		"$script"
+	./internal/get-pacman-packages.sh "$script"
 done
 
 # Installs the packages
@@ -64,7 +55,7 @@ fi
 
 # Runs the post-install hooks
 for script in "${SCRIPTS_TO_INSTALL[@]}"; do
-	sudo ./internal/run-post-install-hooks.sh "$__log_file" y "$user_is_not_root" "$script"
+	sudo ./internal/run-post-install-hooks.sh y "$user_is_not_root" "$script"
 done
 
 # Shows the logs

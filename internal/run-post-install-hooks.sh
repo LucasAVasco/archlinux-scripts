@@ -2,10 +2,9 @@
 #
 # Run a script and executes its post install hooks.
 #
-# $1: The log file
-# $2: Run pacman hooks ('y' or 'n')
-# $3: Run AUR hooks ('y' or 'n')
-# $4: The script to run
+# $1: Run pacman hooks ('y' or 'n')
+# $2: Run AUR hooks ('y' or 'n')
+# $3: The script to run
 
 set -e
 
@@ -22,18 +21,15 @@ source ./libs/install_execute.sh
 # Restore to the original directory
 cd - > /dev/null
 
-# Libraries configuration
-__log_file="$1"
-
 # Sources the scripts in order to preserve the library configuration (the sourced script must have the same variables from the current
 # script)
-cd $(dirname "$4") # Relative to the sourced script
-source "./$(basename "$4")"
+cd $(dirname "$3") # Relative to the sourced script
+source "./$(basename "$3")"
 
-if [ "$2" == y ]; then
+if [ "$1" == y ]; then
 	install_execute_hooks
 fi
 
-if [ "$3" == y ]; then
+if [ "$2" == y ]; then
 	install_execute_aur_hooks
 fi
