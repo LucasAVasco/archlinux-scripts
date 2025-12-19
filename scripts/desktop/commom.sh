@@ -47,3 +47,4 @@ install_mark_packages trash-cli
 
 # Bars and widgets
 install_aur_mark_packages quickshell-git
+install_aur_mark_packages rofi
