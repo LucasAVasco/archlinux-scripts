@@ -39,7 +39,8 @@ install_mark_packages lesspipe
 install_mark_packages btop inxi
 install_mark_packages strace
 
-# Cheats
+# Manual and cheat sheets
+install_mark_packages man-db man-pages
 install_mark_packages tealdeer
 
 # File explorer
