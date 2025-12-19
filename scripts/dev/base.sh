@@ -29,7 +29,7 @@ install_mark_packages fzf fd ripgrep-all the_silver_searcher
 install_mark_packages zsh rlwrap
 
 # Change directories
-install_mark_packages z exa zoxide
+install_mark_packages z eza zoxide
 
 # Pager
 install_mark_packages bat
