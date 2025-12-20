@@ -6,7 +6,7 @@ source ../../libs/install.sh
 install_mark_packages keepassxc pass xkcdpass
 
 # Wallet
-install_mark_packages kwallet kwalletmanager seahorse
+install_mark_packages seahorse
 
 # Cryptography
 install_mark_packages gnupg
