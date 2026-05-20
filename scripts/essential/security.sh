@@ -10,7 +10,7 @@ install_mark_deps cronie
 install_mark_packages firejail
 
 # Micro code
-vendor_id=$(lscpu -J | jq -r '.lscpu.[] | select(.field == "Vendor ID:") .data')
+vendor_id=$(lscpu | grep 'Vendor ID:' | sed 's/.* //' | tr -d '\n')
 
 if [[ "$vendor_id" == "AuthenticAMD" ]]; then
 	install_mark_packages amd-ucode
