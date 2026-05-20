@@ -1,9 +1,6 @@
 #!/bin/bash
 
-source ../../libs/install.sh
-
-# Mesa
-install_mark_packages mesa
+source ../../../libs/install.sh
 
 # Basic (must be installed to run a Vulkan application)
 install_mark_packages vulkan-icd-loader lib32-vulkan-icd-loader

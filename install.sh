@@ -18,6 +18,7 @@ fi
 if [[ -z "${SCRIPTS_TO_INSTALL[@]}" ]]; then
 	declare -a SCRIPTS_TO_INSTALL=(
 		./scripts/essential/*.sh
+		./scripts/essential/graphics/*.sh
 		./scripts/essential/firewall/install.sh
 		./scripts/desktop/*.sh
 		./scripts/basic-apps/*.sh
