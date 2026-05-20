@@ -2,7 +2,7 @@
 
 source ../../../libs/install.sh
 
-install_mark_packages nftables
+install_mark_packages nftables iptables
 
 # Hook to enable and configure nftables
 nftables_hook() {
