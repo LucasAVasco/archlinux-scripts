@@ -13,3 +13,4 @@ install_mark_packages vulkan-swrast lib32-vulkan-swrast
 
 # Debug the Vulkan application
 install_mark_packages vulkan-tools
+install_mark_package_groups vulkan-devel
