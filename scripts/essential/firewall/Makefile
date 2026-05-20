@@ -1,10 +1,10 @@
-install: FORCE
+enable: FORCE
 	systemctl enable nftables.service
 	./nftables.conf && nft -s list ruleset | tee /etc/nftables.conf
 	mkdir -p /etc/sysctl.d/
 	cp ./sysctl.d/* /etc/sysctl.d/
 
-uninstall: FORCE
+disable: FORCE
 	nft flush ruleset
 	nft -s list ruleset
 

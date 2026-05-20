@@ -8,7 +8,7 @@ install_mark_packages nftables
 nftables_hook() {
 	systemctl enable nftables.service
 	systemctl start nftables.service
-	make install
+	make enable
 }
 
 install_add_post_install nftables_hook
