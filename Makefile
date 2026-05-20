@@ -1,6 +1,10 @@
 install: FORCE
 	./install.sh
 
+update: FORCE
+	sudo systemctl start reflector
+	yay -Syu
+
 list-non-tracked: FORCE
 	./list-non-traked-packages.sh
 
