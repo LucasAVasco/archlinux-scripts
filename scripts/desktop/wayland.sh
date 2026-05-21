@@ -3,35 +3,35 @@
 source ../../libs/install.sh
 
 # Enable 'seatd'. Required by all Wayland compositors
-install_mark_packages seatd
+install_mark_gui_packages seatd
 seatd_hook() {
 	systemctl enable --now seatd
 }
-install_add_post_install seatd_hook
+install_add_gui_post_install seatd_hook
 
 # Wallpaper
-install_mark_packages hyprpaper
+install_mark_gui_packages hyprpaper
 
 # Qt applications
-install_mark_packages qt5-wayland
+install_mark_gui_packages qt5-wayland
 
 # Automation (auto-click, auto-type, etc)
-install_mark_packages wtype
+install_mark_gui_packages wtype
 
 # Clipboard
-install_mark_packages wl-clipboard
+install_mark_gui_packages wl-clipboard
 
 # Menu/widgets
-install_mark_packages rofi-wayland
+install_mark_gui_packages rofi-wayland
 
 # Screenshots
-install_mark_packages grim slurp
+install_mark_gui_packages grim slurp
 
 # Screen saver
-install_mark_packages hypridle
+install_mark_gui_packages hypridle
 
 # Events (debug)
-install_mark_packages wev
+install_mark_gui_packages wev
 
 # Required to build Wayland applications
-install_mark_packages wayland wayland-protocols
+install_mark_gui_packages wayland wayland-protocols

@@ -2,4 +2,4 @@
 
 source ../../libs/install.sh
 
-install_mark_packages steam discord
+install_mark_gui_packages steam discord

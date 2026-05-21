@@ -3,10 +3,10 @@
 source ../../libs/install.sh
 
 # VLC
-install_mark_packages vlc vlc-plugin-ffmpeg
+install_mark_gui_packages vlc vlc-plugin-ffmpeg
 
 # MPV
-install_mark_packages mpv
+install_mark_gui_packages mpv
 
 # Recording
-install_mark_packages obs-studio
+install_mark_gui_packages obs-studio

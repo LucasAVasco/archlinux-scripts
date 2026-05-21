@@ -4,10 +4,8 @@ source ../../libs/install.sh
 source ../../libs/install_aur.sh
 
 # Screen brightness and temperature
-install_mark_packages \
-	gammastep \
-	brightnessctl \
-	ddcutil
+install_mark_packages brightnessctl
+install_mark_gui_packages gammastep ddcutil
 
 brightnessctl_hook() {
 	# Load UDEV rules that configure the permissions of backlight devices
@@ -25,26 +23,27 @@ ddcutil_hook() {
 	echo -n i2c-dev > /etc/modules-load.d/i2c-dev.conf
 }
 
-install_add_post_install brightnessctl_hook ddcutil_hook
+install_add_post_install brightnessctl_hook
+install_add_gui_post_install ddcutil_hook
 
 # Desktop portal
-install_mark_packages xdg-desktop-portal-kde
+install_mark_gui_packages xdg-desktop-portal-kde
 
 # Audio
-install_mark_packages pipewire-pulse pipewire-jack
-install_mark_packages pavucontrol # Audio management
-install_mark_packages qpwgraph # More robust audio management
+install_mark_gui_packages pipewire-pulse pipewire-jack
+install_mark_gui_packages pavucontrol # Audio management
+install_mark_gui_packages qpwgraph # More robust audio management
 
 # Devices management
 install_mark_packages udisks2
-install_mark_packages baobab # Disk usage visualizer
+install_mark_gui_packages baobab # Disk usage visualizer
 
 # Notifications
-install_mark_packages dunst
+install_mark_gui_packages dunst
 
 # Trash
 install_mark_packages trash-cli
 
 # Bars and widgets
-install_mark_packages quickshell
-install_aur_mark_packages rofi
+install_mark_gui_packages quickshell
+install_aur_mark_gui_packages rofi

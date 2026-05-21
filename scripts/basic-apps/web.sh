@@ -2,4 +2,4 @@
 
 source ../../libs/install.sh
 
-install_mark_packages firefox
+install_mark_gui_packages firefox

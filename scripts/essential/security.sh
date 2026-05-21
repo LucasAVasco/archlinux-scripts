@@ -3,7 +3,8 @@
 source ../../libs/install.sh
 
 # Antivirus
-install_mark_packages clamav clamtk
+install_mark_packages clamav
+install_mark_gui_packages clamtk
 install_mark_deps cronie
 
 # Process isolation

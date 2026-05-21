@@ -4,11 +4,11 @@ source ../../libs/install.sh
 source ../../libs/install_aur.sh
 
 # Terminal
-install_mark_packages tmux wezterm kitty
+install_mark_gui_packages tmux wezterm kitty
 
 # Text editor
 install_mark_packages vi vim neovim
-install_aur_mark_packages visual-studio-code-bin
+install_aur_mark_gui_packages visual-studio-code-bin
 
 # Version control
 install_mark_packages git git-lfs git-delta
@@ -44,7 +44,9 @@ install_mark_packages man-db man-pages
 install_mark_packages tealdeer
 
 # File explorer
-install_mark_packages vifm ueberzugpp ffmpegthumbnailer
+install_mark_packages vifm
+install_mark_gui_packages ueberzugpp ffmpegthumbnailer
+install_mark_gui_deps ffmpeg pipewire-jack
 
 # Data analysis
 install_mark_packages miller
