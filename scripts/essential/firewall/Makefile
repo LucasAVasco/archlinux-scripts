@@ -1,8 +1,17 @@
 enable: FORCE
-	systemctl enable nftables.service
-	./nftables.conf && nft -s list ruleset | tee /etc/nftables.conf
+	# Configure sysctl
 	mkdir -p /etc/sysctl.d/
 	cp ./sysctl.d/* /etc/sysctl.d/
+
+	# Configure nftables
+	cp ./nftables.conf /etc/nftables.conf
+
+	# Enable nftables
+	systemctl enable nftables.service
+	systemctl start nftables.service
+
+	# Update rules
+	./nftables.conf
 
 disable: FORCE
 	nft flush ruleset
