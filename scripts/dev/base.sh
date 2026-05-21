@@ -44,7 +44,7 @@ install_mark_packages man-db man-pages
 install_mark_packages tealdeer
 
 # File explorer
-install_mark_packages yazi 7zip ffmpegthumbnailer jq poppler
+install_mark_packages vifm ueberzugpp ffmpegthumbnailer
 
 # Data analysis
 install_mark_packages miller
