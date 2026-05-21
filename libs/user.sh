@@ -34,6 +34,7 @@ user_add_to_several_groups() {
 #
 # $@: users names.
 user_enable_gui_to_several_users() {
+	group_ensure_exists seat
 	group_add_several_users seat "$@"
 }
 
