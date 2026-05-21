@@ -21,5 +21,11 @@ user_create_several_users_with_gui "$user" "${user}_games" "${user}_games_dev"
 user_enable_sync_folder_to_users "${user}_dev" "$user"
 user_enable_shared_folder_to_users "${user}_dev" "$user"
 
+# Allow members of the 'sudo' group and root to use sudo
+cat > /etc/sudoers.d/arch-install-sudo-group <<-EOF
+	root ALL=(ALL:ALL) ALL
+	%sudo ALL=(ALL:ALL) ALL
+EOF
+
 # Administrators
 user_create_admins admin admin0
