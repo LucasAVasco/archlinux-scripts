@@ -10,6 +10,7 @@ __install_lib_already_loaded=y
 export INSTALL_PACKAGES_FILE="${INSTALL_PACKAGES_FILE:-/dev/null}" # File with the packages to install (separated by spaces)
 export INSTALL_PACKAGE_GROUPS_FILE="${INSTALL_PACKAGE_GROUPS_FILE:-/dev/null}" # File with the packages groups to install (separated by spaces)
 export INSTALL_DEPS_FILE="${INSTALL_DEPS_FILE:-/dev/null}" # File with the dependencies to install (separated by spaces)
+export INSTALL_GUI_ENABLED="${ARCHLINUX_SCRIPTS_GUI_SUPPORTED:-y}"
 declare -a INSTALL_POST_INSTALL_HOOKS=() # Hooks to run after installing all the packages
 
 # Create the files to store the packages to install.
@@ -55,6 +56,47 @@ install_add_post_install() {
 	for hook in "$@"; do
 		INSTALL_POST_INSTALL_HOOKS+=("$hook")
 	done
+}
+
+# Check if can install GUI apps
+install_is_gui_enabled() {
+	echo -n "$INSTALL_GUI_ENABLED"
+}
+
+# Add packages to install if can install GUI apps
+#
+# $@: List of packages to install.
+install_mark_gui_packages() {
+	if [[ "$INSTALL_GUI_ENABLED" == y ]]; then
+		install_mark_packages "$@"
+	fi
+}
+
+# Add package groups to install if can install GUI apps
+#
+# $@: List of package groups to install.
+install_mark_gui_package_groups() {
+	if [[ "$INSTALL_GUI_ENABLED" == y ]]; then
+		install_mark_package_groups "$@"
+	fi
+}
+
+# Add packages to install as dependency if can install GUI apps
+#
+# $@: List of packages to install.
+install_mark_gui_deps() {
+	if [[ "$INSTALL_GUI_ENABLED" == y ]]; then
+		install_mark_deps "$@"
+	fi
+}
+
+# Add post-install hooks if can install GUI apps. These hooks will be run after installing all the packages.
+#
+# $@: List of hooks to add.
+install_add_gui_post_install() {
+	if [[ "$INSTALL_GUI_ENABLED" == y ]]; then
+		install_add_post_install "$@"
+	fi
 }
 
 # Clear the list of packages to install and delete the files.
