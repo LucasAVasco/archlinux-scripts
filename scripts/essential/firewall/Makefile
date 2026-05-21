@@ -14,6 +14,8 @@ log: FORCE
 list: FORCE
 	nft -a list ruleset | less
 
+monitor: FORCE
+	./lib/monitor.sh
 
 FORCE:
 .PHONY: FORCE
