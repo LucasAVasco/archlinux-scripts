@@ -1,11 +1,14 @@
 #!/bin/bash
 
 source ../../libs/install.sh
+source ../../libs/systemd.sh
 
 # Enable 'seatd'. Required by all Wayland compositors
 install_mark_gui_packages seatd
 seatd_hook() {
-	systemctl enable --now seatd
+	if [[ "$(systemd_is_available)" == y ]]; then
+		systemctl enable --now seatd
+	fi
 }
 install_add_gui_post_install seatd_hook
 

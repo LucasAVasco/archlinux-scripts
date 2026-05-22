@@ -2,15 +2,13 @@
 
 source ../../libs/install.sh
 source ../../libs/install_aur.sh
+source ../../libs/systemd.sh
 
 # Docker
 install_mark_packages docker docker-buildx
 
 # Rootless docker
 rootless_docker_hook() {
-	systemctl stop docker.service
-	systemctl disable docker.service
-
 	# Enables CPU and CPUSET delegation (from the official docs at
 	# https://rootlesscontaine.rs/getting-started/common/cgroup2/#enabling-cpu-cpuset-and-io-delegation)
 	mkdir -p /etc/systemd/system/user@.service.d
@@ -18,7 +16,12 @@ rootless_docker_hook() {
 		[Service]
 		Delegate=cpu cpuset io memory pids
 EOF
-	systemctl daemon-reload
+
+	if [[ "$(systemd_is_available)" == y ]]; then
+		systemctl stop docker.service
+		systemctl disable docker.service
+		systemctl daemon-reload
+	fi
 }
 
 source ../../conf.sh
