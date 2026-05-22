@@ -13,8 +13,6 @@ power_profiles_daemon_hook() {
 	if [[ "$(systemd_is_available)" == y ]]; then
 		systemctl enable --now power-profiles-daemon
 	fi
-
-	powerprofilesctl set power-saver
 }
 
 install_add_post_install power_profiles_daemon_hook
