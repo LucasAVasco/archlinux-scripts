@@ -3,6 +3,9 @@
 source ../../libs/install.sh
 source ../../libs/install_aur.sh
 
+# Applications
+install_mark_packages xdg-utils
+
 # Screen brightness and temperature
 install_mark_packages brightnessctl
 install_mark_gui_packages gammastep ddcutil
