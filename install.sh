@@ -48,10 +48,10 @@ for script in "${SCRIPTS_TO_INSTALL[@]}"; do
 done
 
 # Installs the packages
-install_execute_installation
+install_execute_installation "$ARCHLINUX_SCRIPTS_ASK_TO_INSTALL"
 
 if [[ "$user_is_not_root" == y ]]; then # 'yay' does not work if the user is root
-	install_execute_aur_installation
+	install_execute_aur_installation "$ARCHLINUX_SCRIPTS_ASK_TO_INSTALL"
 fi
 
 # Runs the post-install hooks

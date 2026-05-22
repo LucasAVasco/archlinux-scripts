@@ -8,16 +8,23 @@ source "$current_dir/../../libs/install_aur.sh"
 source "$current_dir/../../libs/log.sh"
 
 # Install pacman packages.
+#
+# $1: ask the user to install the packages. Supported values: 'y' or 'n'. Default: 'y'
 install_execute_installation() {
 	local deps=$(cat "$INSTALL_DEPS_FILE")
 	local packages=$(cat "$INSTALL_PACKAGES_FILE" "$INSTALL_PACKAGE_GROUPS_FILE")
 
+	local args=''
+	if [[ "$1" == 'n' ]]; then
+		args="--noconfirm"
+	fi
+
 	if [[ -n "$deps" ]]; then
-		sudo pacman -S --needed --asdeps $deps
+		sudo pacman -S --needed --asdeps $args $deps
 	fi
 
 	if [[ -n "$packages" ]]; then
-		sudo pacman -S --needed $packages
+		sudo pacman -S --needed $args $packages
 	fi
 }
 
@@ -31,16 +38,23 @@ install_execute_hooks() {
 }
 
 # Install AUR packages.
+#
+# $1: ask the user to install the packages. Supported values: 'y' or 'n'. Default: 'y'
 install_execute_aur_installation() {
 	local deps=$(cat "$INSTALL_AUR_DEPS_FILE")
 	local packages=$(cat "$INSTALL_AUR_PACKAGES_FILE" "$INSTALL_AUR_PACKAGE_GROUPS_FILE")
 
+	local args=''
+	if [[ "$1" == 'n' ]]; then
+		args="--noconfirm"
+	fi
+
 	if [[ -n "$deps" ]]; then
-		yay -S --needed --asdeps $deps
+		yay -S --needed --asdeps $args $deps
 	fi
 
 	if [[ -n "$packages" ]]; then
-		yay -S --needed $packages
+		yay -S --needed $args $packages
 	fi
 }
 
