@@ -9,3 +9,4 @@ install_mark_gui_deps tesseract-data-eng # 'mupdf' dependency
 
 # Edit PDF
 install_mark_packages pdftk
+install_mark_deps jdk-openjdk # 'pdftk' dependency
