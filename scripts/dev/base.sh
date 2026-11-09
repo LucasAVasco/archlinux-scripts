@@ -44,7 +44,7 @@ install_mark_packages man-db man-pages
 install_mark_packages tealdeer
 
 # File explorer
-install_mark_packages vifm
+install_mark_packages vifm perl-image-exiftool
 install_mark_gui_packages ueberzugpp ffmpegthumbnailer
 install_mark_gui_deps ffmpeg pipewire-jack
 
