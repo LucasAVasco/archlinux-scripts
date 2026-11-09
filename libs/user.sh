@@ -5,6 +5,18 @@
 current_dir=$(dirname `realpath "${BASH_SOURCE[0]}"`)
 source "$current_dir/group.sh"
 
+# Create system users.
+#
+# $@: user names.
+user_create_several_system_users() {
+	local user
+	for user in "$@"; do
+		id -u "$user" > /dev/null 2>&1 || {
+			useradd -r -s /usr/bin/nologin "$user"
+		}
+	done
+}
+
 # Create users that can be logged.
 #
 # $@: user names.
