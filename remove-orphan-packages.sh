@@ -2,6 +2,8 @@
 #
 # Remove orphan packages.
 
+set -euo pipefail
+
 package_manager=pacman
 if [[ "$UID" != 0 ]]; then # Admin can use 'yay'
 	package_manager=yay
