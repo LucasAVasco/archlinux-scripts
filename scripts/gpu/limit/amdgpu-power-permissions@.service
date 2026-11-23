@@ -1,0 +1,11 @@
+[Unit]
+Description=Set AMDGPU power DPM sysfs permissions
+After=systemd-udev-settle.service
+ConditionPathExists=/sys/class/drm/%i/device/power_dpm_force_performance_level
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/chown gpu:gpu /sys/class/drm/%i/device/power_dpm_force_performance_level
+
+# vi: ft=systemd

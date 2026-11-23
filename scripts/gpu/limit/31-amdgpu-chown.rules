@@ -1,0 +1,6 @@
+# Change the owner of AMD GPUs device files to the 'gui' user
+
+ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card*", DRIVERS=="amdgpu", \
+  TAG+="systemd", ENV{SYSTEMD_WANTS}+="amdgpu-power-permissions@$kernel.service"
+
+# vi: ft=udevrules
