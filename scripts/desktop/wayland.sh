@@ -38,3 +38,6 @@ install_mark_gui_packages wev
 
 # Required to build Wayland applications
 install_mark_gui_packages wayland wayland-protocols
+
+# Desktop portal
+install_mark_gui_packages xdg-desktop-portal-wlr
