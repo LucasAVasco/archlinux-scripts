@@ -11,6 +11,8 @@ source ./libs/install_aur.sh
 
 declare -a installation_scripts=(
 	./scripts/*/*.sh
+	./scripts/dev/mise/*.sh
+	./scripts/basic-apps/gui/*.sh
 	./scripts/essential/graphics/*.sh
 	./scripts/essential/firewall/install.sh
 )
