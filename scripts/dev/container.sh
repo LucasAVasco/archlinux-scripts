@@ -39,7 +39,7 @@ install_mark_packages podman podman-compose
 install_mark_packages qemu-user-static qemu-user-static-binfmt # Required by Podman to use vitalization
 
 # Kubernets
-install_mark_packages kubectl kubeadm helm kustomize
+install_mark_packages kubectl kubeadm helm helmfile kustomize
 install_mark_packages k9s
 
 # Distribution in containers
