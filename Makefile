@@ -19,6 +19,7 @@ receive-from-origin: FORCE
 
 clear: FORCE
 	./remove-orphan-packages.sh
+	./clear-cache.sh
 
 FORCE:
 .PHONY: FORCE
