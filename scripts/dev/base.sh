@@ -56,3 +56,6 @@ install_mark_packages luarocks
 
 # Required to install App Images
 install_mark_packages fuse2 fuse3
+
+# Linux headers (required by some applications)
+install_mark_packages linux-headers
