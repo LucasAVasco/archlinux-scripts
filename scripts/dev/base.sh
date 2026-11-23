@@ -7,7 +7,7 @@ source ../../libs/install_aur.sh
 install_mark_gui_packages tmux wezterm kitty
 
 # Text editor
-install_mark_packages vi vim neovim
+install_mark_packages ex-vi-compat vim neovim
 install_aur_mark_gui_packages visual-studio-code-bin
 
 # Version control
