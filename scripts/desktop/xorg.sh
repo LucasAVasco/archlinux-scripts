@@ -27,4 +27,4 @@ install_mark_gui_packages maim slop
 install_mark_gui_packages xorg-xinput
 
 # Automation (auto-click, auto-type, etc)
-install_mark_gui_packages xdotool xautomation
+install_mark_gui_packages xdotool xautomation xorg-xev
