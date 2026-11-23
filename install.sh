@@ -24,6 +24,7 @@ if [[ -z "${SCRIPTS_TO_INSTALL[@]}" ]]; then
 		./scripts/basic-apps/*.sh
 		./scripts/dev/*.sh
 		./scripts/dotfiles/*.sh
+		./scripts/gpu/limit/package.sh
 	)
 fi
 
