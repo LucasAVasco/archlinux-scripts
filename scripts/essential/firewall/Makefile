@@ -1,30 +1,30 @@
 enable: FORCE
 	# Configure sysctl
-	mkdir -p /etc/sysctl.d/
-	cp ./sysctl.d/* /etc/sysctl.d/
+	sudo mkdir -p /etc/sysctl.d/
+	sudo cp ./sysctl.d/* /etc/sysctl.d/
 
 	# Configure nftables
-	cp ./nftables.conf /etc/nftables.conf
+	sudo cp ./nftables.conf /etc/nftables.conf
 
 	# Enable nftables
-	systemctl enable nftables.service
-	systemctl start nftables.service
+	sudo systemctl enable nftables.service
+	sudo systemctl start nftables.service
 
 	# Update rules
-	./nftables.conf
+	sudo ./nftables.conf
 
 disable: FORCE
-	nft flush ruleset
-	nft -s list ruleset
+	sudo nft flush ruleset
+	sudo nft -s list ruleset
 
 log: FORCE
-	dmesg --color=always | less -r
+	sudo dmesg --color=always | less -r
 
 list: FORCE
-	nft -a list ruleset | less
+	sudo nft -a list ruleset | less
 
 monitor: FORCE
-	./lib/monitor.sh
+	sudo ./lib/monitor.sh
 
 FORCE:
 .PHONY: FORCE
